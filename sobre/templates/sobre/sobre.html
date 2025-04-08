@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CrypterraX - Home</title>
+    <link rel="icon"
+        href="imagens/logotipo.webp"
+        alt="Logotipo futurista e minimalista para CrypterraX, com linhas geométricas brancas e azuladas em um fundo escuro. O design remete a blockchain e tecnologia, transmitindo um visual moderno e sofisticado">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <header>
+        <div class="linkcadastro">
+            <a href="formulario.html">Cadastro</a>
+        </div>
+        <a href="./index.html" class="img-header"> <img
+                src="imagens/logotipo.webp"
+                width="200" height="200" alt="CrypterraX logo">
+            <h1>CrypterraX</h1>
+            <br>
+            <h2 style="text-align: center;">TRANSFORMANDO SEU HOJE PARA UM FUTURO FINANCEIRO SEM FRONTEIRAS</h2>
+        </a>
+        <!-- Botão do Menu -->
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        <!-- Menu Lateral -->
+        <div id="sideMenu" class="side-menu">
+            <span class="close-btn" onclick="toggleMenu()">×</span>
+            <ul type="square">
+                <a href="formulario.html" class="highlight">Cadastro</a>
+                <a href="index.html" class="marquee">Home</a>
+                <a href="cotacao.html" class="marquee">Converter Dinheiro em Bitcoin</a>
+                <a href="blog.html" class="marquee">Notícias</a>
+                <a href="sobre.html" class="marquee">Cryptomoeda</a>
+
+            </ul>
+        </div>
+
+        <script>
+            function toggleMenu() {
+                var sideMenu = document.getElementById("sideMenu");
+                var currentPosition = sideMenu.style.right;
+                if (currentPosition === "0px") {
+                    sideMenu.style.right = "-250px"; // Esconde o menu
+                } else {
+                    sideMenu.style.right = "0"; // Mostra o menu
+                }
+            }
+        </script>
+    </header>
+
+    <nav>
+        <ul type="square">
+            <li><a href="index.html" class="marquee">Home</a></li>
+            <li><a href="cotacao.html" class="marquee">Converter Dinheiro em Bitcoin</a></li>
+            <li><a href="blog.html" class="marquee">Notícias</a></li>
+            <li><a href="sobre.html" class="marquee">Cryptomoeda</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="Sobre" class="main">
+            <div class="box">
+                <h2>📜 A História das Criptomoedas</h2>
+                <h4>As criptomoedas surgiram como uma revolução financeira, transformando a maneira como lidamos com
+                    dinheiro e transações digitais. Desde a criação do Bitcoin em 2009 até a explosão de novos projetos
+                    baseados em blockchain, essas moedas digitais vêm ganhando espaço no cenário global, desafiando o
+                    sistema financeiro tradicional e criando novas possibilidades para a economia digital.</h4>
+                <br>
+                <hr style="border: 2px solid black; margin: 00px 200;">
+                <h2>🚀 O Surgimento do Bitcoin (2008 - 2009)</h2>
+                <h4>A ideia do Bitcoin foi apresentada em outubro de 2008, quando uma pessoa (ou grupo) sob o pseudônimo
+                    de Satoshi Nakamoto publicou o artigo "Bitcoin: A Peer-to-Peer Electronic Cash System". Esse
+                    documento propôs uma solução para o problema da duplicação de gastos sem depender de intermediários,
+                    como bancos e governos.</h4>
+                <br>
+                <h4>Em 3 de janeiro de 2009, Nakamoto minerou o primeiro bloco da rede Bitcoin, conhecido como bloco
+                    gênese. Esse evento marcou o início da era das criptomoedas. No início, o Bitcoin era usado apenas
+                    por programadores e entusiastas da tecnologia, sem valor comercial significativo.</h4>
+                <br>
+                <h4>A primeira transação real com Bitcoin aconteceu em 22 de maio de 2010, quando um programador chamado
+                    Laszlo Hanyecz pagou 10.000 BTC por duas pizzas. Esse evento ficou conhecido como o Bitcoin Pizza
+                    Day, um dos momentos mais icônicos da história das criptomoedas.</h4>
+                <br>
+                <hr style="border: 2px solid black; margin: 20px 200;">
+                <h2>💰 A Evolução das Criptomoedas (2010 - 2017)</h2>
+                <h4>Após o lançamento do Bitcoin, novos projetos surgiram para aprimorar ou oferecer alternativas à
+                    moeda pioneira. Algumas das criptomoedas mais influentes desse período foram:</h4>
+                <br>
+                <li>Ethereum (2015) – Criado por Vitalik Buterin, introduziu os contratos inteligentes (smart
+                    contracts), permitindo a criação de aplicativos descentralizados (dApps).</li>
+                <li>Litecoin (2011) – Criado por Charlie Lee, era uma versão mais rápida do Bitcoin.
+                <li>Ripple (2012) – Desenvolvido para facilitar transações financeiras internacionais.</li>
+                <hr style="border: 2px solid black; margin: 20px 200;">
+                <h2>🌍 O Impacto Global e a Adoção das Criptomoedas (2018 - Presente)</h2>
+                <h4>Nos últimos anos, as criptomoedas deixaram de ser um nicho tecnológico para se tornar um fenômeno
+                    global. Algumas tendências importantes incluem:</h4>
+                <br>
+                <li>Grandes empresas adotando o Bitcoin – Empresas como Tesla, MicroStrategy e PayPal passaram a aceitar
+                    ou investir em Bitcoin.</li>
+                <li>Regulamentação e aceitação governamental – Alguns países, como El Salvador, adotaram o Bitcoin como
+                    moeda oficial, enquanto outros estudam lançar moedas digitais de bancos centrais (CBDCs).</li>
+                <li>Expansão do mercado de criptomoedas – Surgiram novos setores, como os NFTs (Tokens Não Fungíveis),
+                    os DeFi (Finanças Descentralizadas) e as criptomoedas de segunda camada para escalabilidade.</li>
+                <br>
+                <h4>Hoje, existem milhares de criptomoedas e projetos baseados em blockchain, cada um com seu próprio
+                    propósito e utilidade dentro do ecossistema financeiro digital.</h4>
+                <hr style="border: 2px solid black; margin: 20px 200;">
+                <br>
+                <h2>🔐 O Futuro das Criptomoedas</h2>
+                <h4>Com o avanço da tecnologia blockchain e a crescente adoção das criptomoedas, o futuro da moeda
+                    digital é promissor. Cada vez mais pessoas estão migrando para a economia digital e as criptomoedas
+                    estão se tornando uma parte integral do sistema financeiro global.</h4>
+                <br>
+                <h4>O futuro das criptomoedas é cheio de possibilidades. Com o avanço da tecnologia blockchain e o
+                    aumento da adoção global, podemos esperar:</h4>
+                <br>
+                <li>Maior regulamentação e segurança para proteger os investidores.</li>
+                <li>Avanços tecnológicos que tornem o blockchain mais escalável e sustentável.</li>
+                <li> Adoção em massa, com criptomoedas sendo usadas no dia a dia para pagamentos, contratos e até mesmo
+                    governança.</li>
+                <li> Integração com o mercado financeiro tradicional, criando novas formas de investimento.</li>
+                <br>
+                <h4> 💡 As criptomoedas vieram para ficar. A pergunta agora não é mais "se" elas serão parte do nosso
+                    futuro, mas sim "como" e "quando" elas se tornarão um elemento essencial da economia global. 🚀💰
+                </h4>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <section id="Contato">
+            <h2>Contato</h2>
+            <h4>Email: fellipeducciniultra@gmail.com</h4>
+            <h4>Telefone: +55 (21) 99149-4917</h4>
+            <br>
+        </section>
+        <h5>&copy; 2025 CrypterraX. Todos os direitos reservados. 🚀</h5>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CrypterraX - Cadastro</title>
+    <link rel="icon" href="imagens/logotipo.webp"
+        alt="Logotipo futurista e minimalista para CrypterraX, com linhas geométricas brancas e azuladas em um fundo escuro. O design remete a blockchain e tecnologia, transmitindo um visual moderno e sofisticado">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body class="@media">
+    <header>
+        <div class="linkcadastro">
+            <a href="formulario.html">Cadastro</a>
+        </div>
+        <a href="./index.html" class="img-header"> <img src="imagens/logotipo.webp" width="200" height="200"
+                alt="CrypterraX logo">
+            <h1>CrypterraX</h1>
+        </a>
+        <!-- Botão do Menu -->
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        <!-- Menu Lateral -->
+        <div id="sideMenu" class="side-menu">
+            <span class="close-btn" onclick="toggleMenu()">×</span>
+            <ul type="square">
+                <a href="formulario.html" class="highlight">Cadastro</a>
+                <a href="index.html" class="marquee">Home</a>
+                <a href="cotacao.html" class="marquee">Converter Dinheiro em Bitcoin</a>
+                <a href="blog.html" class="marquee">Notícias</a>
+                <a href="sobre.html" class="marquee">Cryptomoeda</a>
+
+            </ul>
+        </div>
+
+        <script>
+            function toggleMenu() {
+                var sideMenu = document.getElementById("sideMenu");
+                var currentPosition = sideMenu.style.right;
+                if (currentPosition === "0px") {
+                    sideMenu.style.right = "-250px"; // Esconde o menu
+                } else {
+                    sideMenu.style.right = "0"; // Mostra o menu
+                }
+            }
+        </script>
+        <br>
+        <h2 style="text-align: center;">TRANSFORMANDO SEU HOJE PARA UM FUTURO FINANCEIRO SEM FRONTEIRAS</h2>
+    </header>
+    <nav>
+        <ul type="square">
+            <li><a href="index.html" class="marquee">Home</a></li>
+            <li><a href="cotacao.html" class="marquee">Converter Dinheiro em Bitcoin</a></li>
+            <li><a href="blog.html" class="marquee">Notícias</a></li>
+            <li><a href="sobre.html" class="marquee">Cryptomoeda</a></li>
+
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="cadastrar">Cadastro</h2>
+            <br>
+            <form id="formCadastro">
+                <div class="input-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Seu email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" placeholder="Sua senha" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-password">Confirmar Senha</label>
+                    <input type="password" id="confirm-password" name="confirm-password"
+                        placeholder="Confirme sua senha" required>
+                </div>
+                <div class="input-group">
+                    <label for="termos">
+                        <input type="checkbox" id="termos" name="termos" required />
+                        Eu aceito os <a href="termos&condicoes.html" class="termoscondicoes">Termos</a> & <a
+                            href="termos&condicoes.html" class="termoscondicoes">Condições</a>
+                    </label>
+                </div>
+
+                <div class="input-group">
+                    <button type="submit" class="btn-submit">Cadastrar</button>
+
+                </div>
+                <div class="form-footer">
+                    <p>Já tem uma conta? <a href="index.html">Faça login</a></p>
+                </div>
+            </form>
+            <div id="mensagem" style="display: none;">
+                <p>✅ Você foi cadastrado com sucesso!</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <section id="Contato">
+            <h2>Contato</h2>
+            <h4>Email: fellipeducciniultra@gmail.com</h4>
+            <h4>Telefone: +55 (21) 99149-4917</h4>
+            <br>
+        </section>
+        <h5>&copy; 2025 CrypterraX. Todos os direitos reservados. 🚀</h5>
+    </footer>
+
+</body>
+<script>
+    document.getElementById('formCadastro').addEventListener('submit', function (e) {
+        e.preventDefault(); // Impede o envio para outra página
+
+        const termos = document.getElementById('termos');
+
+        if (termos.checked) {
+            document.getElementById('formCadastro').style.display = 'none'; // Esconde o formulário
+            document.getElementById('mensagem').style.display = 'block'; // Exibe a mensagem
+        } else {
+            alert('Você precisa aceitar os termos e condições!');
+        }
+    });
+</script>
+
+</html>

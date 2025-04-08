@@ -1,0 +1,47 @@
+{% extends "global/base.html" %}
+
+{% block main %}
+    <main>
+        <section id="Sobre" class="main">
+            <div class="box">
+                <h2 class="noticias">ÚLTIMAS NOTÍCIAS!</h2>
+                <div class="video-container">
+                    <iframe width="400" height="230" src="https://www.youtube.com/embed/njOHedn9yek" frameborder="0"
+                        allowfullscreen></iframe>
+                    <iframe width="400" height="230" src="https://www.youtube.com/embed/fY6QBgnL3Y4" frameborder="0"
+                        allowfullscreen></iframe>
+                    <iframe width="400" height="230" src="https://www.youtube.com/embed/wfVd-P-bvcU" frameborder="0"
+                        allowfullscreen></iframe>
+                    <iframe width="400" height="230" src="https://www.youtube.com/embed/TD5vrphAyfg" frameborder="0"
+                        allowfullscreen></iframe>
+                </div>
+                </iframe>
+                <!-- <div class="botoes">
+                    <button id="likeBtn">👍<span id="LikeCount">0</span></button>
+                    <button id="likeBtn">👎<span id="dislikeCount">0</span></button>
+                </div> <br>
+                <br>
+                Área dos comentários -->
+                <br>
+
+                <div class="text-noticias">
+                    
+                                    <h3 id="mais_noticias">Para mais noticias:</h3> <br>
+                                    <a href="blog.html" id="cliqueaqui">Clique aqui</a><br><br><br>
+
+                </div>
+                <div id="comentariosgeral">
+                    <h3 class="comenta">Comentários:</h3>
+                    <textarea id="comentarioInput" placeholder="Escreva um comentário..."></textarea> <br>
+                    <button onclick="adicionarComentario()" id="comentar">Comentar</button>
+                    <ul id="listaComentarios"></ul>
+                </div>
+                <br> <br>
+                <!-- <hr style="border: 2px solid black; margin: 00px 200;"> -->
+                <br>
+
+            </div>
+        </section>
+    </main>
+
+{% endblock main %}

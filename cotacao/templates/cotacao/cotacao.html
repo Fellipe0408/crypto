@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CrypterraX - Cotação</title>
+    <link rel="icon"
+        href="imagens/logotipo.webp"
+        alt="Logotipo futurista e minimalista para CrypterraX, com linhas geométricas brancas e azuladas em um fundo escuro. O design remete a blockchain e tecnologia, transmitindo um visual moderno e sofisticado">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body class="@media">
+    <header>
+        <div class="linkcadastro">
+            <a href="formulario.html">Cadastro</a>
+        </div>
+        <a href="./index.html" class="img-header"> <img
+                src="imagens/logotipo.webp"
+                width="200" height="200" alt="CrypterraX logo">
+            <h1>CrypterraX</h1>
+        </a>
+        <!-- Botão do Menu -->
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        <!-- Menu Lateral -->
+        <div id="sideMenu" class="side-menu">
+            <span class="close-btn" onclick="toggleMenu()">×</span>
+            <ul type="square">
+                <a href="formulario.html" class="highlight">Cadastro</a>
+                <a href="index.html" class="marquee">Home</a>
+                <a href="cotacao.html" class="marquee">Converter Dinheiro em Bitcoin</a>
+                <a href="blog.html" class="marquee">Notícias</a>
+                <a href="sobre.html" class="marquee">Cryptomoeda</a>
+
+            </ul>
+        </div>
+
+        <script>
+            function toggleMenu() {
+                var sideMenu = document.getElementById("sideMenu");
+                var currentPosition = sideMenu.style.right;
+                if (currentPosition === "0px") {
+                    sideMenu.style.right = "-250px"; // Esconde o menu
+                } else {
+                    sideMenu.style.right = "0"; // Mostra o menu
+                }
+            }
+        </script>
+        <br>
+        <h2 style="text-align: center;">TRANSFORMANDO SEU HOJE PARA UM FUTURO FINANCEIRO SEM FRONTEIRAS</h2>
+    </header>
+    <nav>
+        <ul type="square">
+            <li><a href="index.html" class="marquee">Home</a></li>
+            <li><a href="cotacao.html" class="marquee">Converter Dinheiro em Bitcoin</a></li>
+            <li><a href="blog.html" class="marquee">Notícias</a></li>
+            <li><a href="sobre.html" class="marquee">Cryptomoeda</a></li>
+
+        </ul>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class="main">
+        <script type="text/javascript" id="escala"
+            src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                {
+                    "colorTheme": "dark",
+                        "dateRange": "1D",
+                            "showChart": true,
+                                "locale": "br",
+                                    "largeChartUrl": "",
+                                        "isTransparent": true,
+                                            "showSymbolLogo": true,
+                                                "width": "300",
+                                                    "height": "450",
+                                                        "symbolsGroups": [
+                                                            {
+                                                                "name": "Criptomoedas",
+                                                                "symbols": [
+                                                                    { "name": "BINANCE:BTCUSDT", "displayName": "Bitcoin" },
+                                                                    { "name": "BINANCE:ETHUSDT", "displayName": "Ethereum" },
+                                                                    { "name": "BINANCE:BNBUSDT", "displayName": "Binance Coin" }
+                                                                ]
+                                                            }
+                                                        ]
+                }
+            </script>
+    </div>
+    <section id="Converter" class="converter">
+        <div class="converter">
+            <h2>💱 Converter Dinheiro em Criptomoedas</h2>
+            <p>Escolha uma criptomoeda e insira um valor em BRL para converter:</p>
+
+            <label for="moeda">Escolha a moeda:</label>
+            <select id="moeda">
+                <option value="btc">Bitcoin (BTC)</option>
+                <option value="eth">Ethereum (ETH)</option>
+                <option value="ltc">Litecoin (LTC)</option>
+                <option value="xrp">Ripple (XRP)</option>
+            </select>
+            <br>
+            <label for="valor">Valor em Reais (BRL):</label>
+            <input type="number" id="valor" placeholder="Digite o valor em BRL">
+
+            <button onclick="converter()">Converter</button>
+
+            <h3>Resultado:</h3>
+            <p id="resultado">Insira o valor para ver o equivalente.</p>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <section id="Contato" class="main">
+            <h2>Contato</h2>
+            <h4>Email: fellipeducciniultra@gmail.com</h4>
+            <h4>Telefone: +55 (21) 99149-4917</h4>
+            <br>
+        </section>
+        <h5>&copy; 2025 CrypterraX. Todos os direitos reservados. 🚀</h5>
+    </footer>
+    <script>
+        async function converter() {
+            const valor = document.getElementById("valor").value;
+            const moeda = document.getElementById("moeda").value;
+            const resultado = document.getElementById("resultado");
+
+            if (valor === "" || valor <= 0) {
+                resultado.innerHTML = "Por favor, insira um valor válido!";
+                return;
+            }
+
+            try {
+                // Buscar as cotações em tempo real
+                const resposta = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,litecoin,ripple&vs_currencies=brl");
+                const cotacoes = await resposta.json();
+
+                // Obter o valor correto da moeda escolhida
+                let valorConvertido;
+                if (moeda === "btc") {
+                    valorConvertido = valor / cotacoes.bitcoin.brl;
+                    resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} BTC`;
+                } else if (moeda === "eth") {
+                    valorConvertido = valor / cotacoes.ethereum.brl;
+                    resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} ETH`;
+                } else if (moeda === "ltc") {
+                    valorConvertido = valor / cotacoes.litecoin.brl;
+                    resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} LTC`;
+                } else if (moeda === "xrp") {
+                    valorConvertido = valor / cotacoes.ripple.brl;
+                    resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} XRP`;
+                }
+
+            } catch (error) {
+                resultado.innerHTML = "Erro ao obter cotações. Tente novamente mais tarde.";
+            }
+        }
+    </script>
