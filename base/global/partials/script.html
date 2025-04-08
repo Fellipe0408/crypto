@@ -1,0 +1,63 @@
+<script>
+    let likes = 0;
+    let dislikes = 0;
+
+    document.getElementById("likeBtn").addEventListener("click", function () {
+        likes++;
+        document.getElementById("likeCount").innerText = likes;
+    });
+
+    document.getElementById("dislikeBtn").addEventListener("click", function () {
+        dislikes++;
+        document.getElementById("dislikeCount").innerText = dislikes;
+    });
+
+    function adicionarComentario() {
+        let comentarioTexto = document.getElementById("comentarioInput").value;
+        if (comentarioTexto.trim() === "") return;
+
+        let listaComentarios = document.getElementById("listaComentarios");
+        let novoComentario = document.createElement("li");
+        novoComentario.classList.add("comment"); // Adiciona a classe ao comentário
+        novoComentario.textContent = comentarioTexto;
+        listaComentarios.appendChild(novoComentario);
+
+        document.getElementById("comentarioInput").value = ""; // Limpar campo
+    }
+
+    let likes = 0;
+    let dislikes = 0;
+
+    document.getElementById("likeBtn").addEventListener("click", function () {
+        likes++;
+        document.getElementById("likeCount").innerText = likes;
+    });
+
+    document.getElementById("dislikeBtn").addEventListener("click", function () {
+        dislikes++;
+        document.getElementById("dislikeCount").innerText = dislikes;
+    });
+
+    function adicionarComentario() {
+        let comentarioTexto = document.getElementById("comentarioInput").value;
+        if (comentarioTexto.trim() === "") return;
+
+        let listaComentarios = document.getElementById("listaComentarios");
+        let novoComentario = document.createElement("li");
+        novoComentario.classList.add("comment"); // Adiciona a classe ao comentário
+        novoComentario.textContent = comentarioTexto;
+        listaComentarios.appendChild(novoComentario);
+
+        document.getElementById("comentarioInput").value = ""; // Limpar campo
+    }
+
+        function toggleMenu() {
+            var sideMenu = document.getElementById("sideMenu");
+            var currentPosition = sideMenu.style.right;
+            if (currentPosition === "0px") {
+                sideMenu.style.right = "-250px"; // Esconde o menu
+            } else {
+                sideMenu.style.right = "0"; // Mostra o menu
+            }
+        }
+    </script>
