@@ -31,9 +31,11 @@ h1 {
 }
 
 h2 {
+    text-align: center;
     color: #ffffff;
     border-bottom: 2px solid lightblue; /* Linha azul clara */
     padding-bottom: 5px;
+
 }
 
 .termos-content {

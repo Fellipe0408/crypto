@@ -13,6 +13,7 @@ body {
     max-width: 100%;
     overflow-x: hidden;
 
+
 }
 
 header {
@@ -636,6 +637,9 @@ textarea {
     .linkcadastro {
         display: none;
     }
+    nav{
+        display: none;
+    }
 }
 
 
@@ -784,6 +788,3 @@ textarea {
     scale: 0.8;
 }
 
-nav {
-    display: none;
-}
