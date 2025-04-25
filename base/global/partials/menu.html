@@ -9,7 +9,7 @@
 
     <h1>CrypterraX</h1>
     <br>
-    <h2 style="text-align: center;">TRANSFORMANDO SEU HOJE PARA UM FUTURO FINANCEIRO SEM FRONTEIRAS</h2>
+    <h2 id="titulo_inicial">TRANSFORMANDO SEU HOJE PARA UM FUTURO FINANCEIRO SEM FRONTEIRAS</h2>
 
     <!-- Menu Lateral (opcional) -->
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
@@ -33,3 +33,56 @@
         <li><a href="{% url 'sobre' %}" class="marquee">Cryptomoeda</a></li>
     </ul>
 </nav>
+<main class="layout">
+    <aside class="sidebar">
+        <!-- Conteúdo da Sidebar -->
+        <h3>🔥 Em Alta</h3>
+        <ul>
+            <li><button>Bitcoin -0.65%</button></li>
+            <li><button>Ethereum -1.82%</button></li>
+            <li><button>Tether -0.00%</button></li>
+        </ul>
+        <h4>📊 Tendência do Dia</h4>
+        <p>Dogecoin está subindo 12% após tweet do Elon Musk.</p>
+    </aside>
+    <section class="conteudo">
+        <script>
+            fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=percent_change_24h_desc&per_page=3&page=1")
+                .then(response => response.json())
+                .then(data => {
+                    const lista = document.getElementById("criptoEmAlta");
+                    lista.innerHTML = ""; // limpa antes de adicionar
+                    data.forEach(coin => {
+                        const li = document.createElement("li");
+                        li.textContent = `${coin.name} ${coin.price_change_percentage_24h.toFixed(2)}%`;
+                        lista.appendChild(li);
+                    });
+                });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <div>
+            <script type="text/javascript" id="escala"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                    {
+                        "colorTheme": "dark",
+                            "dateRange": "1D",
+                                "showChart": true,
+                                    "locale": "br",
+                                        "largeChartUrl": "",
+                                            "isTransparent": true,
+                                                "showSymbolLogo": true,
+                                                    "width": "300",
+                                                        "height": "450",
+                                                            "symbolsGroups": [
+                                                                {
+                                                                    "name": "Criptomoedas",
+                                                                    "symbols": [
+                                                                        { "name": "BINANCE:BTCUSDT", "displayName": "Bitcoin" },
+                                                                        { "name": "BINANCE:ETHUSDT", "displayName": "Ethereum" },
+                                                                        { "name": "BINANCE:BNBUSDT", "displayName": "Binance Coin" }
+                                                                    ]
+                                                                }
+                                                            ]
+                    }
+                </script>
+        </div>

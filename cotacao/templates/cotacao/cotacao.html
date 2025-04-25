@@ -1,33 +1,6 @@
 {% extends "global/base.html" %}
 
 {% block main %}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <div class="main">
-        <script type="text/javascript" id="escala"
-            src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                {
-                    "colorTheme": "dark",
-                        "dateRange": "1D",
-                            "showChart": true,
-                                "locale": "br",
-                                    "largeChartUrl": "",
-                                        "isTransparent": true,
-                                            "showSymbolLogo": true,
-                                                "width": "300",
-                                                    "height": "450",
-                                                        "symbolsGroups": [
-                                                            {
-                                                                "name": "Criptomoedas",
-                                                                "symbols": [
-                                                                    { "name": "BINANCE:BTCUSDT", "displayName": "Bitcoin" },
-                                                                    { "name": "BINANCE:ETHUSDT", "displayName": "Ethereum" },
-                                                                    { "name": "BINANCE:BNBUSDT", "displayName": "Binance Coin" }
-                                                                ]
-                                                            }
-                                                        ]
-                }
-            </script>
-    </div>
     <section id="Converter" class="converter">
         <div class="converter">
             <h2>💱 Converter Dinheiro em Criptomoedas</h2>

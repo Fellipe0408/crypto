@@ -21,16 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    window.adicionarComentario = function () {
-        if (!comentarioInput || comentarioInput.value.trim() === "") return;
-
-        const novoComentario = document.createElement("li");
-        novoComentario.classList.add("comment");
-        novoComentario.textContent = comentarioInput.value;
-        listaComentarios.appendChild(novoComentario);
-
-        comentarioInput.value = "";
+    function adicionarComentario() {
+        console.log("Comentário sendo adicionado");
+        var comentario = document.getElementById('comentarioInput').value;
+        if (comentario) {
+            var li = document.createElement('li');
+            li.textContent = comentario;
+            document.getElementById('listaComentarios').appendChild(li);
+            document.getElementById('comentarioInput').value = ''; // Limpa o campo de comentário
+        }
     }
+    
 
     window.toggleMenu = function () {
         const menu = document.getElementById("sideMenu");
@@ -115,3 +116,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=percent_change_24h_desc&per_page=3&page=1")
+  .then(response => response.json())
+  .then(data => {
+    const lista = document.getElementById("criptoEmAlta");
+    lista.innerHTML = ""; // limpa antes de adicionar
+    data.forEach(coin => {
+      const li = document.createElement("li");
+      li.textContent = `${coin.name} ${coin.price_change_percentage_24h.toFixed(2)}%`;
+      lista.appendChild(li);
+    });
+  });
