@@ -21,18 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function adicionarComentario() {
-        console.log("Comentário sendo adicionado");
-        var comentario = document.getElementById('comentarioInput').value;
-        if (comentario) {
-            var li = document.createElement('li');
-            li.textContent = comentario;
-            document.getElementById('listaComentarios').appendChild(li);
-            document.getElementById('comentarioInput').value = ''; // Limpa o campo de comentário
-        }
-    }
-    
-
     window.toggleMenu = function () {
         const menu = document.getElementById("sideMenu");
         if (menu) {
@@ -49,41 +37,7 @@ window.toggleMenu() {
         sideMenu.style.right = "0"; // Mostra o menu
     }
 }
-async function converter() {
-    const valor = document.getElementById("valor").value;
-    const moeda = document.getElementById("moeda").value;
-    const resultado = document.getElementById("resultado");
 
-    if (valor === "" || valor <= 0) {
-        resultado.innerHTML = "Por favor, insira um valor válido!";
-        return;
-    }
-
-    try {
-        // Buscar as cotações em tempo real
-        const resposta = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,litecoin,ripple&vs_currencies=brl");
-        const cotacoes = await resposta.json();
-
-        // Obter o valor correto da moeda escolhida
-        let valorConvertido;
-        if (moeda === "btc") {
-            valorConvertido = valor / cotacoes.bitcoin.brl;
-            resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} BTC`;
-        } else if (moeda === "eth") {
-            valorConvertido = valor / cotacoes.ethereum.brl;
-            resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} ETH`;
-        } else if (moeda === "ltc") {
-            valorConvertido = valor / cotacoes.litecoin.brl;
-            resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} LTC`;
-        } else if (moeda === "xrp") {
-            valorConvertido = valor / cotacoes.ripple.brl;
-            resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} XRP`;
-        }
-
-    } catch (error) {
-        resultado.innerHTML = "Erro ao obter cotações. Tente novamente mais tarde.";
-    }
-}
 document.getElementById('formCadastro').addEventListener('submit', function (e) {
     e.preventDefault(); // Impede o envio para outra página
 

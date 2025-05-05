@@ -18,12 +18,22 @@ body {
 /* Cabeçalho e navegação */
 header,
 .box,
-.converter,
 .form-container {
     background-color: #0f3460;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.converter {
+    background-color: #0f3460;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    width: 700px;
+    height: 350px;
+    margin: auto;
+    flex-direction: column;
 }
 
 header {
@@ -157,16 +167,49 @@ nav ul li a:hover,
     flex-direction: column;
     align-items: center;
 }
+/* Container da Escala (30% da largura) */
+.escala-container {
+    position: sticky;
+    max-height: calc(100vh - 160px);
+    top: 20px;
+}
+
+/* Estilo da Escala Aprimorado */
+.escala-right {
+    width: 300px;
+    overflow-y: auto;
+}
 
 #escala {
-    width: 900px;
-    /* Ou o tamanho que você quiser */
-    background-color: #1d3a71;
+    float: right;
+    right: 20px;
+    position: sticky;
+    width: 400px;
+    height: 540px;
+    background: linear-gradient(135deg, #1d3a71 0%, #2a4a8a 100%);
     padding: 20px;
     border-radius: 15px;
     color: white;
-    height: calc(100vh - 40px);
-    overflow: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    border: 0.5px solid #3a5a9a; 
+}
+
+
+/* Cabeçalho da Escala */
+.escala-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #3a5a9a;
+}
+
+.escala-header h2 {
+    color: #00d4ff;
+    font-size: 1.4rem;
+    text-align: center;
+    gap: 10px;
 }
 
 .box {
@@ -307,9 +350,10 @@ button:hover,
 }
 
 /* Notícias */
-.noticias,
-.noticias_blog {
+.noticias {
     font-size: 24px;
+}
+.noticias, .noticias_blog {
     font-weight: bold;
     color: #fff;
     background: #16213e;
@@ -320,7 +364,7 @@ button:hover,
 }
 
 .noticias_blog {
-    font-size: 25px;
+    font-size: 24px;
 }
 
 #titulo_inicial,
@@ -421,7 +465,7 @@ button:hover,
 
 /* Layout com sidebar */
 .layout-container {
-    position: relative;
+    position: absolute;
     display: flex;
     padding: 20px;
     gap: 20px;
@@ -433,51 +477,56 @@ button:hover,
     margin: auto;
 }
 
-.sidebar {
-    position: absolute;
-    top: 500px;
-    /* Fica travado a 20px abaixo do header */
-    width: 300px;
+/* .sidebar {
     background-color: #132042;
     padding: 20px;
     border-radius: 15px;
     color: white;
-    box-shadow: 0 0 10px #00000040;
-    max-height: calc(100vh - 40px);
-    /* 100% da tela menos 20px em cima + 20px embaixo */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 170px; /* header height + margin 
+    bottom: 20px; /* distancia do footer 
+    max-height: calc(100vh - 190px);  viewport - (header + footer + margins) 
     overflow-y: auto;
-    /* Scroll interno se o conteúdo crescer demais */
-}
+} */
 
-.sidebar h3 {
-    margin-top: 0;
-    font-size: 1.2rem;
-}
-
-.sidebar h4 {
-    font-size: 1rem;
-    margin-top: 20px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar li button {
-    background-color: #1a1a2e;
+/* Sidebar esquerdo fixo */
+.sidebar {
+    float: left;
+    width: 300px;
+    height: 329px;
+    background-color: #132042;
+    padding: 20px;
+    border-radius: 15px;
     color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    width: 100%;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    left: 20px;
+    position: sticky;
+    top: 20px;
+    bottom: 20px; /* Limite inferior */
+    max-height: calc(100vh - 120px); /* Viewport - (top + bottom) */
+    overflow-y: auto;
+    z-index: 90;
 }
 
-.sidebar li button:hover {
-    background-color: #0f3460;
+.sidebar-header h2 {
+    display: block;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.sidebar-header h1 {
+    margin: 20px;
+    font-size: 1.5em;
+}
+
+.scale {
+    display: flex;
+    gap: 10px;
+    font-size: 0.8em;
+    opacity: 0.8;
 }
 
 .sidebar p,

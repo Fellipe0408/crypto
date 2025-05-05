@@ -1,7 +1,56 @@
 {% extends "global/base.html" %}
 
 {% block main %}
-    <section id="Converter" class="converter">
+<main class="layout">
+    <!-- Sidebar Direito Fixo -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Em Alta</h2>
+        </div>
+        <p><strong>Bitcoin - 0.65%</strong></p>
+        <p><strong>Ethereum - 1.82%</strong></p>
+        <p><strong>Tether - 0.60%</strong></p>
+
+        <h3>Tendência do Dia</h3>
+        <p>Dogecoin está subindo 12% após tweet de Elon Musk.</p>
+    </aside>
+    </div>
+    <!-- Container da Escala (lado direito) -->
+    <div class="escala-container">
+        <div id="escala">
+            <div class="escala-header">
+                <h2><i class="bi bi-bar-chart-line-fill"></i> Mercados Globais</h2>
+            </div>
+            <!-- Widget TradingView -->
+            <div class="tradingview-widget-container" style="margin-top:20px;">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                        {
+                            "colorTheme": "dark",
+                                "dateRange": "12M",
+                                    "showChart": true,
+                                        "locale": "br",
+                                            "width": "100%",
+                                                "height": "400",
+                                                    "largeChartUrl": "",
+                                                        "isTransparent": false,
+                                                            "showSymbolLogo": true,
+                                                                "plotLineColorGrowing": "rgba(0, 212, 255, 1)",
+                                                                    "plotLineColorFalling": "rgba(255, 107, 107, 1)",
+                                                                        "gridLineColor": "rgba(42, 46, 57, 1)",
+                                                                            "scaleFontColor": "rgba(120, 123, 134, 1)",
+                                                                                "belowLineFillColorGrowing": "rgba(0, 212, 255, 0.12)",
+                                                                                    "belowLineFillColorFalling": "rgba(255, 107, 107, 0.12)",
+                                                                                        "symbolActiveColor": "rgba(0, 212, 255, 0.12)"
+                        }
+                    </script>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <section id="Converter">
         <div class="converter">
             <h2>💱 Converter Dinheiro em Criptomoedas</h2>
             <p>Escolha uma criptomoeda e insira um valor em BRL para converter:</p>
@@ -21,8 +70,54 @@
 
             <h3>Resultado:</h3>
             <p id="resultado">Insira o valor para ver o equivalente.</p>
+
+            <script>
+                async function converter() {
+                    const valor = document.getElementById("valor").value;
+                    const moeda = document.getElementById("moeda").value;
+                    const resultado = document.getElementById("resultado");
+                
+                    if (valor === "" || valor <= 0) {
+                        resultado.innerHTML = "Por favor, insira um valor válido!";
+                        return;
+                    }
+                
+                    try {
+                        // Buscar as cotações em tempo real
+                        const resposta = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,litecoin,ripple&vs_currencies=brl");
+                        const cotacoes = await resposta.json();
+                
+                        // Obter o valor correto da moeda escolhida
+                        let valorConvertido;
+                        if (moeda === "btc") {
+                            valorConvertido = valor / cotacoes.bitcoin.brl;
+                            resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} BTC`;
+                        } else if (moeda === "eth") {
+                            valorConvertido = valor / cotacoes.ethereum.brl;
+                            resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} ETH`;
+                        } else if (moeda === "ltc") {
+                            valorConvertido = valor / cotacoes.litecoin.brl;
+                            resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} LTC`;
+                        } else if (moeda === "xrp") {
+                            valorConvertido = valor / cotacoes.ripple.brl;
+                            resultado.innerHTML = `💰 ${valor} BRL = ${valorConvertido.toFixed(6)} XRP`;
+                        }
+                
+                    } catch (error) {
+                        resultado.innerHTML = "Erro ao obter cotações. Tente novamente mais tarde.";
+                    }
+                }
+            </script>
         </div>
     </section>
     </main>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    <br>
+
+
 
 {% endblock main %}

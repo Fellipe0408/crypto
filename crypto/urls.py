@@ -26,4 +26,5 @@ urlpatterns = [
     path('termo/', include('termo.urls')),
     path('formulario/', include('formulario.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

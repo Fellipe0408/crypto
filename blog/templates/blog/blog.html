@@ -1,11 +1,60 @@
 {% extends "global/base.html" %}
 
 {% block main %}
+<main class="layout">
+    <!-- Sidebar Direito Fixo -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Em Alta</h2>
+        </div>
+        <p><strong>Bitcoin - 0.65%</strong></p>
+        <p><strong>Ethereum - 1.82%</strong></p>
+        <p><strong>Tether - 0.60%</strong></p>
+
+        <h3>Tendência do Dia</h3>
+        <p>Dogecoin está subindo 12% após tweet de Elon Musk.</p>
+    </aside>
+    </div>
+    <!-- Container da Escala (lado direito) -->
+    <div class="escala-container">
+        <div id="escala">
+            <div class="escala-header">
+                <h2><i class="bi bi-bar-chart-line-fill"></i> Mercados Globais</h2>
+            </div>
+            <!-- Widget TradingView -->
+            <div class="tradingview-widget-container" style="margin-top:20px;">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript"
+                    src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                        {
+                            "colorTheme": "dark",
+                                "dateRange": "12M",
+                                    "showChart": true,
+                                        "locale": "br",
+                                            "width": "100%",
+                                                "height": "400",
+                                                    "largeChartUrl": "",
+                                                        "isTransparent": false,
+                                                            "showSymbolLogo": true,
+                                                                "plotLineColorGrowing": "rgba(0, 212, 255, 1)",
+                                                                    "plotLineColorFalling": "rgba(255, 107, 107, 1)",
+                                                                        "gridLineColor": "rgba(42, 46, 57, 1)",
+                                                                            "scaleFontColor": "rgba(120, 123, 134, 1)",
+                                                                                "belowLineFillColorGrowing": "rgba(0, 212, 255, 0.12)",
+                                                                                    "belowLineFillColorFalling": "rgba(255, 107, 107, 0.12)",
+                                                                                        "symbolActiveColor": "rgba(0, 212, 255, 0.12)"
+                        }
+                    </script>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
 <main>
     <section id="Sobre" class="main">
         <div class="box container">
             <h2 class="noticias_blog">NOTÍCIAS - CRYPTOMOEDA</h2>
-
+            <br>
             <section id="noticias_links">
                 <ul id="feedNoticias" class="list-unstyled">
                     <li><a href="https://www.btxminer.com/xml/index.html#/blogDetail?id=698" target="_blank">BTX Miner Blog - Última atualização sobre mineração de Bitcoin e tendências do mercado.</a></li>
