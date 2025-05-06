@@ -21,13 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    window.toggleMenu = function () {
-        const menu = document.getElementById("sideMenu");
-        if (menu) {
-            menu.classList.toggle("open");
-        }
-    }
-});
 window.toggleMenu() {
     var sideMenu = document.getElementById("sideMenu");
     var currentPosition = sideMenu.style.right;

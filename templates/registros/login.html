@@ -1,31 +1,86 @@
-{% extends 'global/base.html' %} {% block main %} {% if form.errors %}
-<p>Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
-{% endif %} {% if next %} {% if user.is_authenticated %}
-<p>
-  Sua conta não tem acesso a esta página. Para prosseguir, faça login com uma
-  conta que tenha acesso.
-</p>
-{% else %}
-<p>Faça login para ver esta página.</p>
-{% endif %} {% endif %}
+{% extends "global/base.html" %}
 
-<form method="post" action="{% url 'login' %}" class="form-control">
-  {% csrf_token %}
-  <table>
-    <tr>
-      <td>{{ form.username.label_tag }}</td>
-      <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.password.label_tag }}</td>
-      <td>{{ form.password }}</td>
-    </tr>
-  </table>
-  <input type="submit" value="login" />
-  <input type="hidden" name="next" value="{{ next }}" />
+{% block main %}
 
-  {# Supõe que você configure a visualização password_reset em seu URLconf #}
-  <p><a href="{% url 'password_reset' %}">Esqueceu a senha?</a></p>
-</form>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="cadastrar">Cadastro</h2>
+            <br>
+            <form id="formCadastro">
+                <div class="input-group">
+                    <label for="name">Nome Completo: </label>
+                    <input type="text" id="cadastr" name="name" placeholder="Digite seu nome:" required>
+                </div>
 
-{% endblock info %}
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="cadastr" name="email" placeholder="Digite seu e-mail:" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="cadastr" name="password" placeholder="Digite sua senha:" required minlength="6">
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-password">Confirmar Senha: </label>
+                    <input type="password" id="cadastr" name="confirm-password"
+                        placeholder="Confirme sua senha:" required>
+                </div>
+                <br>
+                <div class="input-group">
+                    <label for="termos">
+                        <input type="checkbox" id="termos" name="termos" required />
+                        Eu aceito os <a href="{% url 'termos' %}" class="termoscondicoes">Termos</a> & <a
+                            href="{% url 'termos' %}" class="termoscondicoes">Condições</a>
+                    </label>
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="btn-submit">Cadastrar</button>
+
+                </div>
+                <div class="form-footer">
+                    <p>Já tem uma conta? <a href={% url 'login' %}>Faça login</a></p>
+                </div>
+            </form>
+            <div id="mensagem" style="display: none;">
+                <p>✅ Você foi cadastrado com sucesso!</p>
+            </div>
+            <script>
+                document.getElementById('formCadastro').addEventListener('submit', function(event) {
+                    // Impede o envio padrão do formulário
+                    event.preventDefault();
+                    
+                    // Pega os valores dos campos
+                    const senha = document.getElementsByName('password')[0].value;
+                    const confirmarSenha = document.getElementsByName('confirm-password')[0].value;
+                    
+                    // Validação das senhas
+                    if (senha !== confirmarSenha) {
+                        alert('As senhas não coincidem! Por favor, verifique.');
+                        return false;
+                    }
+                    
+                    // Verifica se os termos foram aceitos
+                    if (!document.getElementById('termos').checked) {
+                        alert('Você deve aceitar os termos e condições!');
+                        return false;
+                    }
+                    
+                    // Se tudo estiver ok, mostra mensagem de sucesso
+                    document.getElementById('mensagem').style.display = 'block';
+                    
+                    // Aqui você pode adicionar o código para enviar o formulário para o servidor
+                    // this.submit(); // Descomente esta linha para enviar realmente o formulário
+                    
+                    // Opcional: Limpa o formulário após 2 segundos
+                    setTimeout(() => {
+                        this.reset();
+                        document.getElementById('mensagem').style.display = 'none';
+                    }, 2000);
+                });
+                </script>
+        </div>
+    </div>
+
+{% endblock main %}

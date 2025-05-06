@@ -1,6 +1,11 @@
 <header>
     <div class="linkcadastro">
-        <a href="{% url 'formulario' %}">Cadastro</a>
+        <a href="{% url 'login' %}" class="auth-btn login-btn">
+            <i class="bi bi-box-arrow-in-right"></i> Login
+        </a>
+        <a href="{% url 'formulario' %}" class="auth-btn register-btn">
+            <i class="bi bi-person-plus"></i> Cadastro
+        </a>
     </div>
 
     <a href="{% url 'home' %}" class="img-header">
@@ -22,7 +27,14 @@
             <li><a href="{% url 'blog' %}" class="marquee">Notícias</a></li>
             <li><a href="{% url 'sobre' %}" class="marquee">Cryptomoeda</a></li>
         </ul>
-        <script src="/static/global/js/script.js"></script>
+        <script>
+            window.toggleMenu = function () {
+                const menu = document.getElementById("sideMenu");
+                if (menu) {
+                    menu.classList.toggle("open");
+                }
+            }
+        </script>
     </div>
 </header>
 <nav>
