@@ -1,6 +1,7 @@
 {% extends "global/base.html" %}
 
 {% block main %}
+<br>
     <div class="termos-container">
         <h1>📜 Termos e Condições - CrypterraX</h1>
         <br><br>
@@ -59,9 +60,28 @@
         </div>
 
         <div class="termos-footer">
-            <input type="checkbox" id="aceito-termos"label for="aceito-termos">Eu li e aceito os Termos e Condições</label>
+            <input type="checkbox" id="aceito-termos">
+            <label for="aceito-termos">Eu li e aceito os Termos e Condições</label>
             <button id="botao-continuar" disabled>Continuar</button>
-            <script src="/static/global/js/script.js"></script>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const checkbox = document.getElementById("aceito-termos");
+                    const botao = document.getElementById("botao-continuar");
+                
+                    // Habilitar/desabilitar botão conforme checkbox
+                    checkbox.addEventListener("change", function () {
+                        botao.disabled = !checkbox.checked;
+                    });
+                
+                    // Redirecionar quando o botão for clicado
+                    botao.addEventListener("click", function () {
+                        if (checkbox.checked) {
+                            window.location.href = "{% url 'formulario' %}"; // Altere para a URL de registro correta
+                        }
+                    });
+                });
+            </script>
         </div>
     </div>
 {% endblock main %}

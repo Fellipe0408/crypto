@@ -31,38 +31,7 @@ window.toggleMenu() {
     }
 }
 
-document.getElementById('formCadastro').addEventListener('submit', function (e) {
-    e.preventDefault(); // Impede o envio para outra página
 
-    const termos = document.getElementById('termos');
-
-    if (termos.checked) {
-        document.getElementById('formCadastro').style.display = 'none'; // Esconde o formulário
-        document.getElementById('mensagem').style.display = 'block'; // Exibe a mensagem
-    } else {
-        alert('Você precisa aceitar os termos e condições!');
-    }
-});
-document.addEventListener("DOMContentLoaded", function () {
-    const checkbox = document.getElementById("aceito-termos");
-    const botao = document.getElementById("botao-continuar");
-
-    checkbox.addEventListener("change", function () {
-        if (checkbox.checked) {
-            botao.classList.add("enabled");
-            botao.disabled = false;
-        } else {
-            botao.classList.remove("enabled");
-            botao.disabled = true;
-        }
-    });
-
-    botao.addEventListener("click", function () {
-        if (checkbox.checked) {
-            window.location.href = "{% url 'home' %}"; // Redireciona para a página inicial ou outra desejada
-        }
-    });
-});
 fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=percent_change_24h_desc&per_page=3&page=1")
   .then(response => response.json())
   .then(data => {

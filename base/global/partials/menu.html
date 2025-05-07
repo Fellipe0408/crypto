@@ -28,13 +28,32 @@
             <li><a href="{% url 'sobre' %}" class="marquee">Cryptomoeda</a></li>
         </ul>
         <script>
-            window.toggleMenu = function () {
-                const menu = document.getElementById("sideMenu");
-                if (menu) {
-                    menu.classList.toggle("open");
+            // Verifica se o DOM está carregado
+            document.addEventListener('DOMContentLoaded', function() {
+                // Elementos
+                const menuButton = document.getElementById('menuButton');
+                const closeButton = document.getElementById('closeButton');
+                const sideMenu = document.getElementById('sideMenu');
+                const overlay = document.getElementById('menuOverlay');
+                
+                // Função para alternar o menu
+                function toggleMenu() {
+                    sideMenu.classList.toggle('open');
+                    overlay.style.display = sideMenu.classList.contains('open') ? 'block' : 'none';
+                    menuButton.style.display = sideMenu.classList.contains('open') ? 'none' : 'block';
                 }
-            }
-        </script>
+                
+                // Event Listeners
+                menuButton.addEventListener('click', toggleMenu);
+                closeButton.addEventListener('click', toggleMenu);
+                overlay.addEventListener('click', toggleMenu);
+                
+                // Fecha o menu ao clicar em links
+                document.querySelectorAll('.side-menu a').forEach(link => {
+                    link.addEventListener('click', toggleMenu);
+                });
+            });
+            </script>
     </div>
 </header>
 <nav>

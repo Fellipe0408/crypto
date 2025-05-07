@@ -420,71 +420,71 @@ button:hover,
 }
 
 /* Menu lateral (responsivo) */
+/* Ícone do menu */
+.menu-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1000;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    width: 50px;
+    height: 50px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+.menu-icon.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Menu lateral */
 .side-menu {
     position: fixed;
     top: 0;
-    right: -250px;
+    left: -300px;
     width: 250px;
-    height: 100%;
-    background-color: #333;
-    color: white;
+    height: 100vh;
+    background: #343a40;
+    transition: all 0.3s ease;
+    z-index: 999;
     padding-top: 60px;
-    z-index: 100;
-    transition: right 0.3s ease;
-    display: none;
+    
 }
 
-.side-menu.show {
-    right: 0;
+.side-menu.open {
+    left: 0;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu li a {
     display: block;
-}
-
-.menu-icon {
-    display: none;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-    background-color: #007BFF;
+    padding: 15px 20px;
     color: white;
-    padding: 12px 15px;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 99;
-    cursor: pointer;
-    transition: 0.3s;
+    text-decoration: none;
+    border-bottom: 1px solid #495057;
 }
 
-.side-menu a {
-    display: block;
-    padding: 15px;
-    font-size: 18px;
-    border-bottom: 1px solid #444;
-    transition: background-color 0.3s;
+.side-menu li a:hover {
+    background: #495057;
 }
 
-.side-menu a:hover {
-    background-color: #575757;
-}
-
-.side-menu .highlight {
-    background-color: #FFD700;
-    color: #333;
-    font-weight: bold;
-}
-
-.side-menu .highlight:hover {
-    background-color: #FFC107;
-    color: white;
-}
-
-.side-menu .close-btn {
+.close-btn {
     position: absolute;
-    top: 20px;
-    left: 15px;
-    font-size: 30px;
-    color: white;
+    top: 15px;
+    right: 15px;
+    font-size: 25px;
     cursor: pointer;
+    color: white;
 }
 
 /* Layout com sidebar */
@@ -636,3 +636,42 @@ footer {
 #Contato {
     scale: 0.91;
 }
+
+    /* Ajustes para mobile */
+    @media (max-width: 767.98px) {
+        .main-content {
+            order: -1; /* Garante que o conteúdo principal venha primeiro */
+        }
+        .escala-container {
+            order: 1; /* Widget fica depois do conteúdo em mobile */
+        }
+        iframe {
+            margin-bottom: 15px;
+        }
+        #escala {
+            display: none;
+        }
+        .sidebar {
+            display: none;
+        }
+        .menu-icon {
+            display: grid;
+        }
+    }
+
+    /* Mantém o widget visível mas reorganizado em tablets */
+    @media (max-width: 991.98px) {
+        .escala-container {
+            padding-top: 0 !important;
+        }
+        #escala {
+            display: none;
+        }
+        .sidebar {
+            display: none;
+        }
+        .menu-icon {
+            display: grid;
+        }
+        
+    }
