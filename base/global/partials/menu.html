@@ -1,11 +1,7 @@
 <header>
-    <div class="linkcadastro">
-        <a href="{% url 'login' %}" class="auth-btn login-btn">
-            <i class="bi bi-box-arrow-in-right"></i> Login
-        </a>
-        <a href="{% url 'formulario' %}" class="auth-btn register-btn">
-            <i class="bi bi-person-plus"></i> Cadastro
-        </a>
+    <div class="d-flex justify-content-end pe-4 pt-3 gap-2">
+        <a href="{% url 'login' %}" class="btn btn-login">Login</a>
+        <a href="{% url 'formulario' %}" class="btn btn-register">Registro</a>
     </div>
 
     <a href="{% url 'home' %}" class="img-header">
@@ -28,32 +24,38 @@
             <li><a href="{% url 'sobre' %}" class="marquee">Cryptomoeda</a></li>
         </ul>
         <script>
-            // Verifica se o DOM está carregado
-            document.addEventListener('DOMContentLoaded', function() {
-                // Elementos
+            function setupMenu() {
                 const menuButton = document.getElementById('menuButton');
                 const closeButton = document.getElementById('closeButton');
                 const sideMenu = document.getElementById('sideMenu');
                 const overlay = document.getElementById('menuOverlay');
-                
-                // Função para alternar o menu
+
+                // Verifica se todos elementos existem
+                if (!menuButton || !closeButton || !sideMenu || !overlay) {
+                    console.error("Elementos do menu não encontrados!");
+                    return;
+                }
+
+                // Abre/fecha o menu
                 function toggleMenu() {
                     sideMenu.classList.toggle('open');
                     overlay.style.display = sideMenu.classList.contains('open') ? 'block' : 'none';
-                    menuButton.style.display = sideMenu.classList.contains('open') ? 'none' : 'block';
+                    menuButton.style.visibility = sideMenu.classList.contains('open') ? 'hidden' : 'visible';
                 }
-                
+
                 // Event Listeners
                 menuButton.addEventListener('click', toggleMenu);
                 closeButton.addEventListener('click', toggleMenu);
                 overlay.addEventListener('click', toggleMenu);
-                
-                // Fecha o menu ao clicar em links
-                document.querySelectorAll('.side-menu a').forEach(link => {
+
+                // Fecha ao clicar em links
+                document.querySelectorAll('.menu-list a').forEach(link => {
                     link.addEventListener('click', toggleMenu);
                 });
-            });
-            </script>
+            }
+            // Executa quando o DOM estiver pronto
+            document.addEventListener('DOMContentLoaded', setupMenu);
+        </script>
     </div>
 </header>
 <nav>
