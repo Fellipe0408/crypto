@@ -1,0 +1,38 @@
+{% extends "global/base.html" %}
+
+{% block main %}
+<div class="form-container">
+  <h2 style="color: #00cfff; margin-bottom: 20px; text-decoration: underline;">Login</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <div style="text-align: left;">
+      {{ form.as_p }}
+    </div>
+    <button type="submit" style="
+      margin-top: 10px;
+      background-color: #ffcc00;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    " onmouseover="this.style.backgroundColor='#e6b800'" onmouseout="this.style.backgroundColor='#ffcc00'">
+      Entrar
+    </button>
+  </form>
+
+  <p style="margin-top: 15px;">
+    <a href="{% url 'password_reset' %}" style="
+      color: #00cfff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    " onmouseover="this.style.color='#ffcc00'" onmouseout="this.style.color='#00cfff'">
+      Esqueceu a senha?
+    </a>
+  </p>
+</div>
+{% endblock %}

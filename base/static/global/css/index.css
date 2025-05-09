@@ -24,15 +24,26 @@ header,
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
+#formCadastro{
+    width: 350px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .form-container {
-    background-color: #0f3460;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 450px;
-    margin: 20px auto;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #173261;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+    text-align: center;
     transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .form-container:hover {
@@ -93,6 +104,12 @@ nav ul li a {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
+.input-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 
 nav ul li a:hover,
@@ -103,6 +120,7 @@ nav ul li a:hover,
 
 .input-group a:hover {
     text-decoration: none;
+    
 }
 
 /* ===== Estilos específicos da página HOME ===== */
@@ -264,13 +282,16 @@ hr {
 }
 
 #cadastr {
-    max-width: 500px;
-    margin: auto;
+    max-width: 400px;
     padding: 8px;
     background: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     color: #000;
+}
+#facalogin {
+    text-decoration: none;
+    color:dodgerblue ;
 }
 
 
@@ -625,7 +646,7 @@ footer {
     padding: 8px 20px;
     border-radius: 20px;
     font-weight: 600;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -636,17 +657,25 @@ footer {
     padding: 8px 20px;
     border-radius: 20px;
     font-weight: 600;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
-.btn-login:hover, .btn-register:hover {
+.btn-login:hover,
+.btn-register:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     opacity: 0.9;
-} 
+}
+
 #Contato {
     scale: 0.91;
+}
+
+#esqueceusenha {
+    text-align: center;
+    margin-top: 15px;
+
 }
 
 /* Ajustes para mobile */
