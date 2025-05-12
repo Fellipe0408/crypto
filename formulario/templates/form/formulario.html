@@ -6,7 +6,9 @@
         <div class="form-container">
             <h2 class="cadastrar">Cadastro</h2>
             <br>
-            <form id="formCadastro">
+            <form method="POST" id="formCadastro" action = {% url 'formulario_gravar' %}> <!-- 1. Adicione o method="POST" aqui -->
+                {% csrf_token %} <!-- 2. Adicione o CSRF Token aqui -->
+                
                 <div class="input-group">
                     <label for="name">Nome Completo: </label>
                     <input type="text" id="cadastr" name="name" placeholder="Digite seu nome:" required>
@@ -37,7 +39,6 @@
                 </div>
                 <div class="input-group">
                     <button type="submit" class="btn-submit">Cadastrar</button>
-
                 </div>
                 <div class="form-footer">
                     <p>Já tem uma conta? <a href={% url 'login' %} id="facalogin">Faça login</a></p>
@@ -71,7 +72,7 @@
                     document.getElementById('mensagem').style.display = 'block';
                     
                     // Aqui você pode adicionar o código para enviar o formulário para o servidor
-                    // this.submit(); // Descomente esta linha para enviar realmente o formulário
+                    this.submit(); // Descomente esta linha para enviar realmente o formulário
                     
                     // Opcional: Limpa o formulário após 2 segundos
                     setTimeout(() => {
@@ -79,7 +80,7 @@
                         document.getElementById('mensagem').style.display = 'none';
                     }, 2000);
                 });
-                </script>
+            </script>
         </div>
     </div>
 
