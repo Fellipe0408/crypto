@@ -1,23 +1,17 @@
-from django.shortcuts import render
-from .models import Pessoa
+from django.shortcuts import render, redirect
+from .models import Registro
 
-# Create your views here.
+def login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
 
-def dados(request):
-    contexto = {
-        'title' : 'Dados'
-    }
-    return render (
-        request,
-        'dados/login.html',
-        contexto
-    )
-
-def conclusao(request):
-    #Salvar os dados da tela para o banco
-    nova_pessoa = Pessoa()
-    nova_pessoa.nome = request.POST.get('nome')
-    nova_pessoa.email = request.POST.get('email')
-    nova_pessoa.save()
+        try:
+            user = Registro.objects.get(email=email, senha=senha)
+            # Aqui você pode usar sessions para simular login
+            request.session['usuario_id'] = user.id
+            return redirect('home')  # ou qualquer outra página
+        except Registro.DoesNotExist:
+            return render(request, 'registration/login.html', {'erro': 'Email ou senha inválidos.'})
     
-    return dados(request)
+    return render(request, 'registration/login.html')
