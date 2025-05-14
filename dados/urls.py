@@ -1,6 +1,7 @@
-from django.urls import path
-from . import views
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('', views.dados, name='dados'),
+    path('admin/', admin.site.urls),
+    path('', include('Dados.urls')),
 ]

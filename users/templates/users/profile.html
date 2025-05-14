@@ -1,0 +1,98 @@
+{% extends "global/base.html" %}
+
+{% block main %}
+<main class="layout">
+    <section class="main">
+        <div class="box container col-md-6 col-12 form-container" style="max-width: 450px; margin: auto; padding: 30px;">
+            <h2 style="margin-bottom: 2rem; align-items: center; text-align: center; text-decoration: underline;">Editar Perfil</h2>
+
+            <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem;">
+                <div style="position: relative; width: 140px; height: 140px; margin-bottom: 1rem;">
+                    <img id="profilePic" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Foto do perfil" style="width: 140px; height: 140px; border-radius: 50%; border: 4px solid #ffcc00; object-fit: cover; cursor: pointer;" tabindex="0" />
+                    <label for="profileInput" title="Alterar foto do perfil" tabindex="0" aria-label="Alterar foto do perfil" style="position: absolute; bottom: 0; right: 0; background: #ffcc00; color: black; border-radius: 50%; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; border: 2px solid #121b31; font-weight: bold; font-size: 1.5rem; user-select: none;">
+                        &#9998;
+                    </label>
+                    <input type="file" id="profileInput" accept="image/*" style="display: none;" />
+                </div>
+            </div>
+
+            <form id="profileForm" autocomplete="off" novalidate>
+                <label for="nameInput" style="color: #ffcc00; font-weight: 700; display: block; margin-bottom: 0.5rem;">Nome</label>
+                <input type="text" id="nameInput" name="name" placeholder="Seu nome completo" required minlength="2" style="width: 100%; background-color: #121b31; border: 2px solid #444; border-radius: 5px; color: white; padding: 10px; margin-bottom: 1.5rem; font-size: 16px;" />
+
+                <button type="submit" class="btn btn-submit" style="background-color: #ffcc00; color: black; font-weight: 700; width: 100%;">Salvar Alterações</button>
+            </form>
+
+            <button id="logoutBtn" class="btn" style="background-color: #ef4444; color: white; font-weight: 700; margin-top: 1.5rem; width: 100%;">Sair da Conta</button>
+
+            <p style="margin-top: 1rem; color: #999; text-align: center;">Os dados são salvos localmente no navegador.</p>
+        </div>
+    </section>
+</main>
+
+<script>
+    const profilePic = document.getElementById('profilePic');
+    const profileInput = document.getElementById('profileInput');
+    const nameInput = document.getElementById('nameInput');
+    const profileForm = document.getElementById('profileForm');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    function loadProfile() {
+        const savedPhoto = localStorage.getItem('profilePhoto');
+        const savedName = localStorage.getItem('profileName');
+        profilePic.src = savedPhoto || 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+        nameInput.value = savedName || '';
+    }
+
+    function saveProfile() {
+        localStorage.setItem('profileName', nameInput.value.trim());
+        alert('Alterações salvas com sucesso!');
+    }
+
+    profileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                profilePic.src = event.target.result;
+                localStorage.setItem('profilePhoto', event.target.result); // Salva a foto no localStorage
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Por favor, escolha um arquivo de imagem válido.');
+        }
+        e.target.value = '';
+    });
+    
+
+    profileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (nameInput.value.trim().length < 2) {
+            alert('Por favor, insira um nome válido com pelo menos 2 caracteres.');
+            nameInput.focus();
+            return;
+        }
+        saveProfile();
+    });
+
+    logoutBtn.addEventListener('click', () => {
+        if (confirm('Tem certeza que deseja sair da conta? Seus dados serão apagados.')) {
+            localStorage.clear();
+            location.reload();
+        }
+    });
+
+    // Acessibilidade para ativar input de arquivo pelo teclado
+    document.querySelector('label[for="profileInput"]').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            profileInput.click();
+        }
+    });
+
+    loadProfile();
+</script>
+
+
+{% endblock main %}
+

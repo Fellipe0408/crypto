@@ -1,62 +1,109 @@
 <header>
-    <div class="d-flex justify-content-end pe-4 pt-3 gap-2">
-        <a href="{% url 'login' %}" class="btn btn-login">Login</a>
-        <a href="{% url 'formulario' %}" class="btn btn-register">Registro</a>
-    </div>
+    <style>
+        .profile-button {
+            position: absolute;
+            left: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
 
-    <a href="{% url 'home' %}" class="img-header">
-        <img src="/static/global/imagens/cryptomoeda.png" width="200" height="200" alt="CrypterraX logo">
-    </a>
+        .profile-button img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #ffcc00;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
 
-    <h1>CrypterraX</h1>
-    <br>
-    <h2 id="titulo_inicial">TRANSFORMANDO SEU HOJE PARA UM FUTURO FINANCEIRO SEM FRONTEIRAS</h2>
-
-    <!-- Menu Lateral (opcional) -->
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <div id="sideMenu" class="side-menu">
-        <span class="close-btn" onclick="toggleMenu()">X</span>
-        <ul type="square">
-            <li><a href="{% url 'formulario' %}" class="highlight">Cadastro</a></li>
-            <li><a href="{% url 'home' %}" class="marquee">Home</a></li>
-            <li><a href="{% url 'cotacao' %}" class="marquee">Converter Dinheiro em Bitcoin</a></li>
-            <li><a href="{% url 'blog' %}" class="marquee">Notícias</a></li>
-            <li><a href="{% url 'sobre' %}" class="marquee">Cryptomoeda</a></li>
-        </ul>
-        <script>
-            function setupMenu() {
-                const menuButton = document.getElementById('menuButton');
-                const closeButton = document.getElementById('closeButton');
-                const sideMenu = document.getElementById('sideMenu');
-                const overlay = document.getElementById('menuOverlay');
-
-                // Verifica se todos elementos existem
-                if (!menuButton || !closeButton || !sideMenu || !overlay) {
-                    console.error("Elementos do menu não encontrados!");
-                    return;
-                }
-
-                // Abre/fecha o menu
-                function toggleMenu() {
-                    sideMenu.classList.toggle('open');
-                    overlay.style.display = sideMenu.classList.contains('open') ? 'block' : 'none';
-                    menuButton.style.visibility = sideMenu.classList.contains('open') ? 'hidden' : 'visible';
-                }
-
-                // Event Listeners
-                menuButton.addEventListener('click', toggleMenu);
-                closeButton.addEventListener('click', toggleMenu);
-                overlay.addEventListener('click', toggleMenu);
-
-                // Fecha ao clicar em links
-                document.querySelectorAll('.menu-list a').forEach(link => {
-                    link.addEventListener('click', toggleMenu);
-                });
+        .profile-button img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 8px 2px #ffcc00;
+        }
+    </style>
+    </head>
+    <!-- Botão Perfil com foto -->
+    <button class="profile-button" id="profileBtn" title="Ir para o perfil" aria-label="Ir para o perfil">
+        <img id="profilePhotoBtn" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Foto do perfil" />
+    </button>
+    <script>
+        const profilePhotoBtn = document.getElementById('profilePhotoBtn');
+        const profileBtn = document.getElementById('profileBtn');
+        // Carregar imagem do perfil salva no localStorage
+        function loadProfilePhoto() {
+            const savedPhoto = localStorage.getItem('profilePhoto');
+            if (savedPhoto) {
+                profilePhotoBtn.src = savedPhoto;
             }
-            // Executa quando o DOM estiver pronto
-            document.addEventListener('DOMContentLoaded', setupMenu);
-        </script>
-    </div>
+        }
+        loadProfilePhoto();
+        // Redireciona para "profile/" ao clicar no botão
+        profileBtn.addEventListener('click', () => {
+            window.location.href = '/profile/'; // caminho para a página de perfil
+        });
+    </script>
+
+    <body>
+        <div class="d-flex justify-content-end pe-4 pt-3 gap-2">
+            <a href="{% url 'login' %}" class="btn btn-login">Login</a>
+            <a href="{% url 'formulario' %}" class="btn btn-register">Registro</a>
+        </div>
+
+        <a href="{% url 'home' %}" class="img-header">
+            <img src="/static/global/imagens/cryptomoeda.png" width="200" height="200" alt="CrypterraX logo">
+        </a>
+
+        <h1>CrypterraX</h1>
+        <br>
+        <h2 id="titulo_inicial">TRANSFORMANDO SEU HOJE PARA UM FUTURO FINANCEIRO SEM FRONTEIRAS</h2>
+
+        <!-- Menu Lateral (opcional) -->
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div id="sideMenu" class="side-menu">
+            <span class="close-btn" onclick="toggleMenu()">X</span>
+            <ul type="square">
+                <li><a href="{% url 'formulario' %}" class="highlight">Cadastro</a></li>
+                <li><a href="{% url 'home' %}" class="marquee">Home</a></li>
+                <li><a href="{% url 'cotacao' %}" class="marquee">Converter Dinheiro em Bitcoin</a></li>
+                <li><a href="{% url 'blog' %}" class="marquee">Notícias</a></li>
+                <li><a href="{% url 'sobre' %}" class="marquee">Cryptomoeda</a></li>
+            </ul>
+            <script>
+                function setupMenu() {
+                    const menuButton = document.getElementById('menuButton');
+                    const closeButton = document.getElementById('closeButton');
+                    const sideMenu = document.getElementById('sideMenu');
+                    const overlay = document.getElementById('menuOverlay');
+
+                    // Verifica se todos elementos existem
+                    if (!menuButton || !closeButton || !sideMenu || !overlay) {
+                        console.error("Elementos do menu não encontrados!");
+                        return;
+                    }
+
+                    // Abre/fecha o menu
+                    function toggleMenu() {
+                        sideMenu.classList.toggle('open');
+                        overlay.style.display = sideMenu.classList.contains('open') ? 'block' : 'none';
+                        menuButton.style.visibility = sideMenu.classList.contains('open') ? 'hidden' : 'visible';
+                    }
+
+                    // Event Listeners
+                    menuButton.addEventListener('click', toggleMenu);
+                    closeButton.addEventListener('click', toggleMenu);
+                    overlay.addEventListener('click', toggleMenu);
+
+                    // Fecha ao clicar em links
+                    document.querySelectorAll('.menu-list a').forEach(link => {
+                        link.addEventListener('click', toggleMenu);
+                    });
+                }
+                // Executa quando o DOM estiver pronto
+                document.addEventListener('DOMContentLoaded', setupMenu);
+            </script>
+        </div>
 </header>
 <nav>
     <ul type="square">

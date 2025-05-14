@@ -11,7 +11,8 @@ urlpatterns = [
     path('sobre/', include('sobre.urls')),
     path('termo/', include('termo.urls')),
     path('formulario/', include('formulario.urls')),
-    path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('django.contrib.auth.urls')),
-]
+    path('admin/', admin.site.urls),
+    path('profile/', include('users.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

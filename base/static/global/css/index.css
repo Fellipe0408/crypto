@@ -31,6 +31,43 @@ header,
     flex-direction: column;
     justify-content: space-between;
 }
+.comentario-item {
+    display: flex; /* Flexbox para alinhar a imagem e o texto */
+    align-items: flex-start; /* Alinhamento vertical */
+    padding: 10px 0; /* Espaçamento entre os comentários */
+    border-bottom: 1px solid #e0e0e0; /* Linha separadora */
+}
+.comentario-item:last-child {
+    border-bottom: none; /* Remove a linha do último comentário */
+}
+.comentario-item img {
+    border-radius: 50%; /* Bordas arredondadas para a foto de perfil */
+    width: 40px; /* Largura da imagem */
+    height: 40px; /* Altura da imagem */
+    margin-right: 10px; /* Espaçamento à direita da imagem */
+}
+.comentario-item strong {
+    font-size: 18px; /* Tamanho da fonte do nome */
+}
+.comentario-item p {
+    margin: 5px 0 0; /* Margem para o texto do comentário */
+    color: #fff; /* Cor do texto do comentário */
+    font-size: 18px; /* Tamanho da fonte do comentário */
+}
+.comentario-item time {
+    font-size: 12px; /* Tamanho da fonte para a data */
+    color: #999; /* Cor da data */
+    margin-left: 5px; /* Espaçamento à esquerda da data */
+}
+.comentario-conteudo {
+    display: flex; /* Flexbox para alinhar o nome e a data */
+    flex-direction: column; /* Coloca o nome e a data em coluna */
+    left: 20px;
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
+    
+}
+
+
 .form-container {
     max-width: 400px;
     margin: 50px auto;
@@ -313,6 +350,17 @@ textarea {
     color: white;
     border: 2px solid #444;
     transition: border-color 0.3s, box-shadow 0.3s;
+}
+.btn-primary {
+    background-color: #007bff; /* Cor do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px 15px; /* Espaçamento interno do botão */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+}
+.btn-primary:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
 }
 
 input:focus,

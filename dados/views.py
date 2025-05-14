@@ -1,17 +1,22 @@
+# views.py
 from django.shortcuts import render, redirect
-from .models import Registro
+from django.contrib.auth import authenticate, login
+from .forms import CustomLoginForm
 
-def login(request):
+def login_view(request):
+    erro = ''
     if request.method == 'POST':
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
-
-        try:
-            user = Registro.objects.get(email=email, senha=senha)
-            # Aqui você pode usar sessions para simular login
-            request.session['usuario_id'] = user.id
-            return redirect('home')  # ou qualquer outra página
-        except Registro.DoesNotExist:
-            return render(request, 'registration/login.html', {'erro': 'Email ou senha inválidos.'})
+        form = CustomLoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)  # Loga o usuário
+                return redirect('home')  # Redireciona após login
+            else:
+                erro = 'Usuário ou senha inválidos.'
+    else:
+        form = CustomLoginForm()
     
-    return render(request, 'registration/login.html')
+    return render(request, 'login.html', {'form': form, 'erro': erro})

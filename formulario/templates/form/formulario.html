@@ -6,8 +6,8 @@
         <div class="form-container">
             <h2 class="cadastrar">Cadastro</h2>
             <br>
-            <form method="POST" id="formCadastro" action = {% url 'formulario_gravar' %}> <!-- 1. Adicione o method="POST" aqui -->
-                {% csrf_token %} <!-- 2. Adicione o CSRF Token aqui -->
+            <form method="POST" id="formCadastro" action = {% url 'formulario_gravar' %}> 
+                {% csrf_token %} 
                 
                 <div class="input-group">
                     <label for="name">Nome Completo: </label>
