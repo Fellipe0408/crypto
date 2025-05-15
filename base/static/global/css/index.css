@@ -24,49 +24,141 @@ header,
     box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
-#formCadastro{
+#formCadastro {
     width: 350px;
     max-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 .comentario-item {
-    display: flex; /* Flexbox para alinhar a imagem e o texto */
-    align-items: flex-start; /* Alinhamento vertical */
-    padding: 10px 0; /* Espaçamento entre os comentários */
-    border-bottom: 1px solid #e0e0e0; /* Linha separadora */
-}
-.comentario-item:last-child {
-    border-bottom: none; /* Remove a linha do último comentário */
-}
-.comentario-item img {
-    border-radius: 50%; /* Bordas arredondadas para a foto de perfil */
-    width: 40px; /* Largura da imagem */
-    height: 40px; /* Altura da imagem */
-    margin-right: 10px; /* Espaçamento à direita da imagem */
-}
-.comentario-item strong {
-    font-size: 18px; /* Tamanho da fonte do nome */
-}
-.comentario-item p {
-    margin: 5px 0 0; /* Margem para o texto do comentário */
-    color: #fff; /* Cor do texto do comentário */
-    font-size: 18px; /* Tamanho da fonte do comentário */
-}
-.comentario-item time {
-    font-size: 12px; /* Tamanho da fonte para a data */
-    color: #999; /* Cor da data */
-    margin-left: 5px; /* Espaçamento à esquerda da data */
-}
-.comentario-conteudo {
-    display: flex; /* Flexbox para alinhar o nome e a data */
-    flex-direction: column; /* Coloca o nome e a data em coluna */
-    left: 20px;
-    justify-content: flex-start; /* Alinha o conteúdo ao topo */
-    
+    display: flex;
+    align-items: flex-start;
+    background-color: #2a4a8a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    margin-bottom: 12px;
+    transition: box-shadow 0.2s ease;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
+.comentario-item:hover {
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+}
+
+.comentario-item:last-child {
+    border-bottom: none;
+    /* Remove a linha do último comentário */
+}
+
+.comentario-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 14px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.comentario-item strong {
+    font-size: 18px;
+    /* Tamanho da fonte do nome */
+}
+
+.comentario-item p {
+    margin: 6px 0 0;
+    /* Margem para o texto do comentário */
+    color: #fff;
+    /* Cor do texto do comentário */
+    font-size: 18px;
+    /* Tamanho da fonte do comentário */
+}
+
+.comentario-item time {
+    font-size: 12px;
+    /* Tamanho da fonte para a data */
+    color: #999;
+    /* Cor da data */
+    margin-left: 5px;
+    /* Espaçamento à esquerda da data */
+}
+
+.comentario-conteudo {
+    display: flex;
+    /* Flexbox para alinhar o nome e a data */
+    flex-direction: column;
+    /* Coloca o nome e a data em coluna */
+    left: 20px;
+    justify-content: left;
+    /* Alinha o conteúdo ao topo */
+
+}
+
+.comentario-conteudo strong {
+    font-weight: 500;
+    color: #00d4ff;
+    cursor: pointer;
+}
+
+.comentario-conteudo time {
+    color: #fff;
+    font-size: 12px;
+    margin-left: 6px;
+    font-weight: normal;
+}
+
+.comentario-conteudo p {
+    margin: 4px 0 0 0;
+    white-space: pre-wrap;
+    color: #f8f9fa;
+}
+
+.menu-button {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: #606060;
+    padding: 0 8px;
+    align-self: start;
+    user-select: none;
+}
+
+.menu-options {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 36px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 100px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+    z-index: 10;
+}
+
+.menu-options.show {
+    display: block;
+}
+
+.menu-options button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+    color: #202020;
+}
+
+.menu-options button:hover {
+    background-color: #eee;
+}
 
 .form-container {
     max-width: 400px;
@@ -141,7 +233,7 @@ nav ul li a {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.input-group{
+.input-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -157,7 +249,7 @@ nav ul li a:hover,
 
 .input-group a:hover {
     text-decoration: none;
-    
+
 }
 
 /* ===== Estilos específicos da página HOME ===== */
@@ -213,10 +305,9 @@ nav ul li a:hover,
 
 #listaComentarios {
     list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    padding-left: 0;
+    max-width: 700px;
+    margin: auto;
 }
 
 #listaComentarios li {
@@ -326,9 +417,10 @@ hr {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     color: #000;
 }
+
 #facalogin {
     text-decoration: none;
-    color:dodgerblue ;
+    color: dodgerblue;
 }
 
 
@@ -351,16 +443,25 @@ textarea {
     border: 2px solid #444;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
+
 .btn-primary {
-    background-color: #007bff; /* Cor do botão */
-    color: white; /* Cor do texto do botão */
-    border: none; /* Remove a borda */
-    border-radius: 5px; /* Bordas arredondadas */
-    padding: 10px 15px; /* Espaçamento interno do botão */
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    background-color: #007bff;
+    /* Cor do botão */
+    color: white;
+    /* Cor do texto do botão */
+    border: none;
+    /* Remove a borda */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    padding: 10px 15px;
+    /* Espaçamento interno do botão */
+    cursor: pointer;
+    /* Cursor de ponteiro ao passar o mouse */
 }
+
 .btn-primary:hover {
-    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+    background-color: #0056b3;
+    /* Cor do botão ao passar o mouse */
 }
 
 input:focus,

@@ -1,16 +1,8 @@
-from django.contrib.auth.models import AbstractUser , Group, Permission
 from django.db import models
+from django.contrib.auth.models import User
 
-class CustomUser (AbstractUser ):
-    profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
-    groups = models.ManyToManyField(
-        Group,
-        related_name='customuser_set',  # Adicione um related_name único
-        blank=True,
-    )
-    
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name='customuser_set',  # Adicione um related_name único
-        blank=True,
-    )
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    foto = models.ImageField(upload_to='fotos_perfil/', null=True, blank=True)
+    def __str__(self):
+        return self.user.username

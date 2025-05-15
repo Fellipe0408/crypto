@@ -84,60 +84,135 @@
                 {% endif %}
                 <ul id="listaComentarios" class="list-unstyled mt-3">
                     {% for comentario in comentarios %}
-                        <li class="comentario-item d-flex align-items-start mb-3">
-                            <img src="{{ comentario.usuario.profile.photo.url }}" alt="Foto de perfil" class="rounded-circle" style="width: 40px; height: 40px; margin-right: 10px;">
+                        <li id="comentario-{{comentario.id}}" class="comentario-item d-flex align-items-start mb-3">
                             <div class="comentario-conteudo">
-                                <strong>{{ comentario.usuario.username }}</strong>
+                                <strong>{{ comentario.usuario.username }} </strong>
                                 <time> - {{ comentario.data_postagem|date:"d/m/Y H:i" }}</time>
                                 <p>{{ comentario.texto }}</p>
+                                    {% csrf_token %}
+                                  
+                                    <button type="button" onclick="removerComentario({{comentario.id}})" style="
+                                      margin-top: 10px;
+                                      background-color: #ffcc00;
+                                      border: none;
+                                      padding: 10px 20px;
+                                      border-radius: 8px;
+                                      color: #000;
+                                      font-weight: bold;
+                                      cursor: pointer;
+                                      transition: background-color 0.3s ease;
+                                    " onmouseover="this.style.backgroundColor='#e6b800'" onmouseout="this.style.backgroundColor='#ffcc00'">
+                                      Remover
+                                    </button>
+                                
                             </div>
                         </li>
                 </ul>
-                        <script>
-                            function adicionarComentario() {
-                                const comentarioInput = document.getElementById('comentarioInput');
-                                const textoComentario = comentarioInput.value.trim();
-                            
-                                if (textoComentario === '') {
-                                    alert('Por favor, escreva um comentário.');
-                                    return;
-                                }
-                            
-                                fetch('/adicionar_comentario/', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'X-CSRFToken': '{{ csrf_token }}'  // Inclua o token CSRF
-                                    },
-                                    body: JSON.stringify({ texto: textoComentario })
-                                })
-                                .then(response => {
-                                    if (response.ok) {
-                                        // Adicione o comentário à lista localmente
-                                        const listaComentarios = document.getElementById('listaComentarios');
-                                        const novoComentario = document.createElement('li');
-                                        novoComentario.className = 'comentario-item d-flex align-items-start mb-3';
-                                        const fotoPerfil = localStorage.getItem('profilePhoto') || 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
-                                        novoComentario.innerHTML = `
-                                            <img src="${fotoPerfil}" alt="Foto de perfil" class="rounded-circle" style="width: 40px; height: 40px; margin-right: 10px;">
-                                            <div>
-                                                <strong>${localStorage.getItem('profileName') || 'Usuário'}</strong> - agora:
-                                                <p>${textoComentario}</p>
-                                            </div>
-                                        `;
-                                        listaComentarios.appendChild(novoComentario);
-                                        comentarioInput.value = '';
-                                    } else {
-                                        alert('Erro ao adicionar comentário.');
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error('Erro:', error);
-                                });
+                <script>
+                    const csrfToken = '{{ csrf_token }}';
+                
+                    function adicionarComentario() {
+                        const comentarioInput = document.getElementById('comentarioInput');
+                        const textoComentario = comentarioInput.value.trim();
+                
+                        if (textoComentario === '') {
+                            alert('Por favor, escreva um comentário.');
+                            return;
+                        }
+                
+                        fetch('{% url "adicionar_comentario" %}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': csrfToken,
+                            },
+                            body: JSON.stringify({ texto: textoComentario }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                const listaComentarios = document.getElementById('listaComentarios');
+                                const novoComentario = document.createElement('li');
+                                novoComentario.className = 'comentario-item d-flex align-items-start mb-3';
+                                const nomeUsuario = data.nome_usuario || 'Usuário desconhecido';
+                                const fotoPerfilUrl = data.foto_perfil_url || 'imagens/cryptomoeda.png';
+                                novoComentario.innerHTML = `<img src="${fotoPerfilUrl}" alt="Foto de perfil" class="rounded-circle" style="width: 40px; height: 40px; margin-right: 10px;">
+                                    <div class="comentario-conteudo">
+                                        <strong>${nomeUsuario}</strong>
+                                        <time> - agora</time>
+                                        <p>${data.texto}</p>
+                                    </div>
+                                `;
+                                // Adiciona o novo comentário no topo da lista
+                                listaComentarios.insertBefore(novoComentario, listaComentarios.firstChild);
+                                
+                            } else {
+                                alert('Erro ao adicionar comentário: ' + (data.error || 'Desconhecido'));
                             }
-                            
-                        </script>
-                        
+                        })
+                        .catch(error => {
+                            console.error('Erro:', error);
+                            alert('Erro ao adicionar comentário.');
+                        });
+                    }
+                    function criarComentarioElemento(data) {
+                        const novoComentario = document.createElement('li');
+                        novoComentario.className = 'comentario-item d-flex align-items-start mb-3';
+                        novoComentario.innerHTML = `
+                            <img src="${data.foto_perfil_url}" alt="Foto de perfil" class="rounded-circle">
+                            <div class="comentario-conteudo">
+                                <strong>${escapeHtml(data.nome_usuario)}</strong>
+                                <time> - agora</time>
+                                <p>${escapeHtml(data.texto)}</p>
+                            </div>
+                            <button class="menu-button" aria-label="Abrir menu de opções">⋮</button>
+                            <div class="menu-options" role="menu">
+                                <button type="button" class="btn-deletar" role="menuitem">Deletar</button>
+                            </div>
+                        `;
+                                // Insere no topo da lista
+        listaComentarios.insertBefore(novoComentario, listaComentarios.firstChild);
+        const menuButton = novoComentario.querySelector('.menu-button');
+        const menuOptions = novoComentario.querySelector('.menu-options');
+        const btnDeletar = novoComentario.querySelector('.btn-deletar');
+        menuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            fecharTodosMenus();
+            menuOptions.classList.toggle('show');
+        });
+        btnDeletar.addEventListener('click', () => {
+            // Aqui você pode adicionar chamada para backend para excluir comentário,
+            // aqui removemos no frontend para efeito imediato
+            listaComentarios.removeChild(novoComentario);
+            fecharTodosMenus();
+        });
+    }
+    
+    function removerComentario(id) {
+        fetch(`/remover-comentario/${id}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+            body: JSON.stringify({}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById(`comentario-${id}`).remove();
+            } else {
+                alert('Erro ao remover comentário: ' + (data.error || 'Desconhecido'));
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao remover comentário.');
+        });
+    }
+    
+                </script>
+                
                     {% endfor %}
                 </ul>
             </div>
