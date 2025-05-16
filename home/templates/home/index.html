@@ -82,28 +82,23 @@
                         <a href="{% url 'login' %}" class="alert-link">Faça login</a> para comentar.
                     </div>
                 {% endif %}
-                <ul id="listaComentarios" class="list-unstyled mt-3">
+                <!-- <ul id="listaComentarios" class="list-unstyled mt-3"> -->
                     {% for comentario in comentarios %}
                         <li id="comentario-{{comentario.id}}" class="comentario-item d-flex align-items-start mb-3">
                             <div class="comentario-conteudo">
                                 <strong>{{ comentario.usuario.username }} </strong>
-                                <time> - {{ comentario.data_postagem|date:"d/m/Y H:i" }}</time>
+                                <time>{{ comentario.data_postagem|date:"d/m/Y H:i" }}</time>
                                 <p>{{ comentario.texto }}</p>
                                     {% csrf_token %}
                                   
-                                    <button type="button" onclick="removerComentario({{comentario.id}})" style="
-                                      margin-top: 10px;
-                                      background-color: #ffcc00;
-                                      border: none;
-                                      padding: 10px 20px;
+                                    <!-- <button type="button" onclick="removerComentario({{comentario.id}})" style="
+                                      padding: 10px 60px;
                                       border-radius: 8px;
-                                      color: #000;
+                                      color: #000
                                       font-weight: bold;
-                                      cursor: pointer;
-                                      transition: background-color 0.3s ease;
-                                    " onmouseover="this.style.backgroundColor='#e6b800'" onmouseout="this.style.backgroundColor='#ffcc00'">
+                                      cursor: pointer;">
                                       Remover
-                                    </button>
+                                    </button> -->
                                 
                             </div>
                         </li>
@@ -150,10 +145,10 @@
                                 alert('Erro ao adicionar comentário: ' + (data.error || 'Desconhecido'));
                             }
                         })
-                        .catch(error => {
-                            console.error('Erro:', error);
-                            alert('Erro ao adicionar comentário.');
-                        });
+                        // .catch(error => {
+                        //     console.error('Erro:', error);
+                        //     alert('Erro ao adicionar comentário.');
+                        // });
                     }
                     function criarComentarioElemento(data) {
                         const novoComentario = document.createElement('li');
